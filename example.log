@@ -1,2 +1,8 @@
-INFO:root:Begin looping the prompter
-INFO:root:Begin looping the prompter
+2024-02-05 00:24:27,697 INFO     Begin looping the prompter.             [main.py init_prompter 38]
+2024-02-05 00:24:33,680 INFO     User chose prompter: lol             [main.py top_level_prompter 51]
+2024-02-05 00:24:35,895 INFO     User ran command: joke             [main.py prompt_for_lols 73]
+2024-02-05 00:24:35,895 INFO     Begin looping the prompter.             [main.py init_prompter 38]
+2024-02-05 00:24:37,336 INFO     User chose prompter: lol             [main.py top_level_prompter 51]
+2024-02-05 00:24:38,213 INFO     User entered miscellaneous text.             [main.py prompt_for_lols 76]
+2024-02-05 00:24:38,213 INFO     Begin looping the prompter.             [main.py init_prompter 38]
+2024-02-05 00:24:40,216 INFO     User ran command: exit (clean exit)             [main.py top_level_prompter 48]

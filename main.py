@@ -1,5 +1,7 @@
 import logging
 
+logger = logging.getLogger(__name__)
+
 def main():
     init_logger()
     init_prompter()
@@ -8,6 +10,9 @@ def main():
 def init_logger():
     logging.basicConfig(
         filename="example.log",
+        filemode="w", # overwrite log on each new execution
+        format="""%(asctime)s %(levelname)-8s %(message)s \
+            [%(filename)s %(funcName)s %(lineno)d]""",
         encoding="utf-8",
         level=logging.DEBUG
         )
@@ -30,7 +35,7 @@ def init_prompter():
     print("\nWelcome to the prompter-logger\n==============================")
 
     while (True):
-        logging.info("Begin looping the prompter")
+        logging.info("Begin looping the prompter.")
         top_level_prompter(commands)
 
 
@@ -40,7 +45,7 @@ def top_level_prompter(commands):
     user_input = prompt(available_commands, message)
     match user_input.lower():
         case "exit":
-            logging.info("User ran command: exit")
+            logging.info("User ran command: exit (clean exit)")
             exit(0)
         case "lol":
             logging.info("User chose prompter: lol")
@@ -62,7 +67,7 @@ def prompt_for_lols(commands):
             logging.info("User entered empty string.")
             pass
         case "exit":
-            logging.info("User ran command: exit")
+            logging.info("User ran command: exit (clean exit)")
             exit(0)
         case "joke":
             logging.info("User ran command: joke")
@@ -81,7 +86,7 @@ def prompt_for_dinner(commands):
             logging.info("User entered empty string.")
             pass
         case "exit":
-            logging.info("User ran command: exit")
+            logging.info("User ran command: exit (clean exit)")
             exit(0)
         case "monty":
             logging.info("User ran command: monty")
@@ -97,7 +102,6 @@ def prompt(available_commands, menu_header="Available commands", message="", pro
     print(f"\n{menu_header}\n{'-'*len(menu_header)}\n")
     for cmd, desc in available_commands:
         print(f"{cmd}:\t{desc}")
-
     return input(f"\n{prompt}\n> ")
 
 if __name__ == "__main__":

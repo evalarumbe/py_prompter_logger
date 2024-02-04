@@ -1,10 +1,16 @@
+import logging
+
 def main():
     init_logger()
     init_prompter()
 
 
 def init_logger():
-    pass
+    logging.basicConfig(
+        filename="example.log",
+        encoding="utf-8",
+        level=logging.DEBUG
+        )
 
 
 def init_prompter():
@@ -14,7 +20,7 @@ def init_prompter():
         "joke": "Tell me a classic",
         "monty": "Let Monty order",
         "exit": "Exit without saving",
-    }
+        }
 
     # Usage examples
     # --------------
@@ -24,6 +30,7 @@ def init_prompter():
     print("\nWelcome to the prompter-logger\n==============================")
 
     while (True):
+        logging.info("Begin looping the prompter")
         top_level_prompter(commands)
 
 
@@ -33,12 +40,16 @@ def top_level_prompter(commands):
     user_input = prompt(available_commands, message)
     match user_input.lower():
         case "exit":
+            logging.info("User ran command: exit")
             exit(0)
         case "lol":
+            logging.info("User chose prompter: lol")
             prompt_for_lols(commands)
         case "dinner":
+            logging.info("User chose prompter: dinner")
             prompt_for_dinner(commands)
         case _:
+            logging.info("User entered miscellaneous text.")
             print("Wie bitte?")
 
 
@@ -48,12 +59,16 @@ def prompt_for_lols(commands):
     user_input = prompt(available_commands, message=message, prompt="Name an animal that walks backwards?")
     match user_input.lower():
         case "":
+            logging.info("User entered empty string.")
             pass
         case "exit":
+            logging.info("User ran command: exit")
             exit(0)
         case "joke":
+            logging.info("User ran command: joke")
             print("There are 10 types of people: those who understand binary, and those who don't.")
         case _:
+            logging.info("User entered miscellaneous text.")
             print(f"Ah yes, the mighty {user_input[::-1]}.")
 
 
@@ -63,16 +78,20 @@ def prompt_for_dinner(commands):
     user_input = prompt(available_commands, message=message, prompt="May I take your order?")
     match user_input.lower():
         case "":
+            logging.info("User entered empty string.")
             pass
         case "exit":
+            logging.info("User ran command: exit")
             exit(0)
         case "monty":
+            logging.info("User ran command: monty")
             print("Monty would like the eggs and spam, please.")
         case _:
+            logging.info("User entered miscellaneous text.")
             print(f"{str(user_input)}, coming right up!")
 
 
-def prompt(available_commands, menu_header="Available commands", message="", prompt="Well?"):
+def prompt(available_commands, menu_header="Available commands", message="", prompt=""):
     if len(message) > 0:
         print(f"\n{message}")
     print(f"\n{menu_header}\n{'-'*len(menu_header)}\n")

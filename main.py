@@ -84,9 +84,9 @@ def prompt_for_lols(commands):
             exit(0)
         case "joke":
             logging.info("User ran command: joke")
-            print(
-                "There are 10 types of people: those who understand binary, and those who don't."
-            )
+            joke = "\nThere are 10 types of people in the world... \
+                    \nThose who understand binary, and those who don't."
+            print(joke)
         case _:
             logging.info("User entered miscellaneous text.")
             print(f"Ah yes, the mighty {user_input[::-1]}.")

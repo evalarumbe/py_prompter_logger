@@ -2,6 +2,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def main():
     init_logger()
     init_prompter()
@@ -10,12 +11,12 @@ def main():
 def init_logger():
     logging.basicConfig(
         filename="example.log",
-        filemode="w", # overwrite log on each new execution
+        filemode="w",  # overwrite log on each new execution
         format="""%(asctime)s %(levelname)-8s %(message)s \
             [%(filename)s %(funcName)s %(lineno)d]""",
         encoding="utf-8",
-        level=logging.DEBUG
-        )
+        level=logging.DEBUG,
+    )
 
 
 def init_prompter():
@@ -25,7 +26,7 @@ def init_prompter():
         "joke": "Tell me a classic",
         "monty": "Let Monty order",
         "exit": "Exit without saving",
-        }
+    }
 
     # Usage examples
     # --------------
@@ -34,13 +35,15 @@ def init_prompter():
 
     print("\nWelcome to the prompter-logger\n==============================")
 
-    while (True):
+    while True:
         logging.info("Begin looping the prompter.")
         top_level_prompter(commands)
 
 
 def top_level_prompter(commands):
-    available_commands = filter(lambda command: command[0] in ["dinner", "lol", "exit"], commands.items())
+    available_commands = filter(
+        lambda command: command[0] in ["dinner", "lol", "exit"], commands.items()
+    )
     message = "Choose one of the prompters"
     user_input = prompt(available_commands, message)
     match user_input.lower():
@@ -59,9 +62,15 @@ def top_level_prompter(commands):
 
 
 def prompt_for_lols(commands):
-    available_commands = filter(lambda command: command[0] in ["joke", "exit"], commands.items())
+    available_commands = filter(
+        lambda command: command[0] in ["joke", "exit"], commands.items()
+    )
     message = "Eggsellent choice."
-    user_input = prompt(available_commands, message=message, prompt="Name an animal that walks backwards?")
+    user_input = prompt(
+        available_commands,
+        message=message,
+        prompt="Name an animal that walks backwards?",
+    )
     match user_input.lower():
         case "":
             logging.info("User entered empty string.")
@@ -71,16 +80,22 @@ def prompt_for_lols(commands):
             exit(0)
         case "joke":
             logging.info("User ran command: joke")
-            print("There are 10 types of people: those who understand binary, and those who don't.")
+            print(
+                "There are 10 types of people: those who understand binary, and those who don't."
+            )
         case _:
             logging.info("User entered miscellaneous text.")
             print(f"Ah yes, the mighty {user_input[::-1]}.")
 
 
 def prompt_for_dinner(commands):
-    available_commands = filter(lambda command: command[0] in ["monty", "exit"], commands.items())
+    available_commands = filter(
+        lambda command: command[0] in ["monty", "exit"], commands.items()
+    )
     message = "Welcome to the restaurant!"
-    user_input = prompt(available_commands, message=message, prompt="May I take your order?")
+    user_input = prompt(
+        available_commands, message=message, prompt="May I take your order?"
+    )
     match user_input.lower():
         case "":
             logging.info("User entered empty string.")
@@ -103,6 +118,7 @@ def prompt(available_commands, menu_header="Available commands", message="", pro
     for cmd, desc in available_commands:
         print(f"{cmd}:\t{desc}")
     return input(f"\n{prompt}\n> ")
+
 
 if __name__ == "__main__":
     main()

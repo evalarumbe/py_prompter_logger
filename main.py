@@ -20,6 +20,8 @@ def init_logger():
 
 
 def init_prompter():
+    # Full list of supported commands for the whole app.
+    # Context-aware prompts may offer a filtered subset of these.
     commands = {
         "dinner": "The hungry prompter",
         "lol": "The laughing prompter",
@@ -41,6 +43,7 @@ def init_prompter():
 
 
 def top_level_prompter(commands):
+    """Root prompter, to prompt for prompters."""
     available_commands = filter(
         lambda command: command[0] in ["dinner", "lol", "exit"], commands.items()
     )
@@ -62,6 +65,7 @@ def top_level_prompter(commands):
 
 
 def prompt_for_lols(commands):
+    """Example prompt, to show how prompt() can be customized."""
     available_commands = filter(
         lambda command: command[0] in ["joke", "exit"], commands.items()
     )
@@ -89,6 +93,7 @@ def prompt_for_lols(commands):
 
 
 def prompt_for_dinner(commands):
+    """Example prompt, to show how prompt() can be customized."""
     available_commands = filter(
         lambda command: command[0] in ["monty", "exit"], commands.items()
     )
@@ -112,6 +117,7 @@ def prompt_for_dinner(commands):
 
 
 def prompt(available_commands, menu_header="Available commands", message="", prompt=""):
+    """Generic prompt, to be adapted per use case."""
     if len(message) > 0:
         print(f"\n{message}")
     print(f"\n{menu_header}\n{'-'*len(menu_header)}\n")
